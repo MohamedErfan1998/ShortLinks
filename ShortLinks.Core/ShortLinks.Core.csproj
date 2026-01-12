@@ -7,12 +7,12 @@
 
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Core</PackageId>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <Authors>Mohamed</Authors>
 	  <Description>ShortLinks core services (create/resolve + code generator).</Description>
 	  <PackageTags>shortlinks url shortener</PackageTags>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <RepositoryUrl>https://github.com/your-org/shortlinks</RepositoryUrl>
+	  <RepositoryUrl>https://github.com/MohamedErfan1998/ShortLinks</RepositoryUrl>
 
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -26,4 +26,8 @@
     <ProjectReference Include="..\ShortLinks.Abstractions\ShortLinks.Abstractions.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+	
 </Project>
