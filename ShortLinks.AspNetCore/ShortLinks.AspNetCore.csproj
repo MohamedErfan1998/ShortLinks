@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <!-- Allows access to ASP.NET Core primitives -->
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\ShortLinks.Abstractions\ShortLinks.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

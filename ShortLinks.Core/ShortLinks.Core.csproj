@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <IsPackable>true</IsPackable>
+	  <PackageId>ShortLinks.Core</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>Mohamed</Authors>
+	  <Description>ShortLinks core services (create/resolve + code generator).</Description>
+	  <PackageTags>shortlinks url shortener</PackageTags>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <RepositoryUrl>https://github.com/your-org/shortlinks</RepositoryUrl>
+
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShortLinks.Abstractions\ShortLinks.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
