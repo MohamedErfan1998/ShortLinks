@@ -8,7 +8,7 @@
 	  <!-- NuGet -->
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Abstractions</PackageId>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <Authors>Mohamed</Authors>
 	  <Description>ShortLinks contracts (interfaces, DTOs, options).</Description>
 	  <PackageTags>shortlinks url shortener</PackageTags>
@@ -23,6 +23,7 @@
 	
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>

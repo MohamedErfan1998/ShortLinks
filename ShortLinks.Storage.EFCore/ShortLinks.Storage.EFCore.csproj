@@ -7,7 +7,7 @@
 
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Storage.EFCore</PackageId>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <Authors>Mohamed</Authors>
 	  <Description>EF Core storage for ShortLinks (DbContext + repository).</Description>
 	  <PackageTags>shortlinks efcore sqlserver</PackageTags>
@@ -43,6 +43,7 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>

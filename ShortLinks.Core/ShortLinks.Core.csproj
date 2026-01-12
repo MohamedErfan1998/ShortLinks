@@ -7,7 +7,7 @@
 
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Core</PackageId>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <Authors>Mohamed</Authors>
 	  <Description>ShortLinks core services (create/resolve + code generator).</Description>
 	  <PackageTags>shortlinks url shortener</PackageTags>
@@ -28,6 +28,7 @@
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>
