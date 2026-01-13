@@ -7,13 +7,15 @@
 
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Storage.EFCore</PackageId>
-	  <Version>1.0.2</Version>
-	  <Authors>Mohamed</Authors>
+	  <Version>1.0.3</Version>
+	  <Authors>Mohamed Erfan</Authors>
 	  <Description>EF Core storage for ShortLinks (DbContext + repository).</Description>
 	  <PackageTags>shortlinks efcore sqlserver</PackageTags>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <RepositoryUrl>https://github.com/MohamedErfan1998/ShortLinks</RepositoryUrl>
-
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageIcon>icon.png</PackageIcon>
+	  
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

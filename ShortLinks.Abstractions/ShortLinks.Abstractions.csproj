@@ -8,13 +8,14 @@
 	  <!-- NuGet -->
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Abstractions</PackageId>
-	  <Version>1.0.2</Version>
-	  <Authors>Mohamed</Authors>
+	  <Version>1.0.3</Version>
+	  <Authors>Mohamed Erfan</Authors>
 	  <Description>ShortLinks contracts (interfaces, DTOs, options).</Description>
 	  <PackageTags>shortlinks url shortener</PackageTags>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <RepositoryUrl>https://github.com/MohamedErfan1998/ShortLinks</RepositoryUrl>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageIcon>icon.png</PackageIcon>
 	  
 	  <!-- Recommended -->
 	  <IncludeSymbols>true</IncludeSymbols>
