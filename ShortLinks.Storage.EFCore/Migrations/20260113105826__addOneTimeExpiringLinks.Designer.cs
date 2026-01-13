@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShortLinks.Storage.EFCore;
 
@@ -11,9 +12,11 @@ using ShortLinks.Storage.EFCore;
 namespace ShortLinks.Storage.EFCore.Migrations
 {
     [DbContext(typeof(ShortLinksDbContext))]
-    partial class ShortLinksDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260113105826__addOneTimeExpiringLinks")]
+    partial class _addOneTimeExpiringLinks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

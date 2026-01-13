@@ -13,5 +13,8 @@ namespace ShortLinks.Abstractions.Interfaces.Repositories
         /// Persist tracking changes (hit count, last accessed). No-op for stores that don't track.
         /// </summary>
         Task UpdateTrackingAsync(ShortLink link, CancellationToken ct = default);
+
+        // atomic consume
+        Task<ShortLink?> ConsumeAsync(string code, bool trackHits, CancellationToken ct = default);
     }
 }

@@ -27,6 +27,9 @@ namespace ShortLinks.Storage.EFCore
             e.Property(x => x.HitCount).IsRequired();
             e.Property(x => x.LastAccessedAtUtc);
 
+            e.Property(x => x.MaxUses);
+            e.Property(x => x.UsedCount);
+
             base.OnModelCreating(modelBuilder);
         }
     }

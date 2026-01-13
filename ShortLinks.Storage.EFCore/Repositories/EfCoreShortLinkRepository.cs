@@ -28,5 +28,40 @@ namespace ShortLinks.Storage.EFCore.Repositories
             _db.ShortLinks.Update(link);
             await _db.SaveChangesAsync(ct);
         }
+
+        public async Task<ShortLink?> ConsumeAsync(string code, bool trackHits, CancellationToken ct = default)
+        {
+            var now = DateTime.UtcNow;
+
+            var query = _db.ShortLinks
+                .Where(x => x.Code == code)
+                .Where(x => x.ExpireAtUtc == null || x.ExpireAtUtc > now)
+                .Where(x => x.MaxUses == null || x.UsedCount < x.MaxUses);
+
+            int affected;
+
+            if (trackHits)
+            {
+                affected = await query.ExecuteUpdateAsync(setters =>
+                    setters
+                        .SetProperty(x => x.UsedCount, x => x.UsedCount + 1)
+                        .SetProperty(x => x.HitCount, x => x.HitCount + 1)
+                        .SetProperty(x => x.LastAccessedAtUtc, _ => now),
+                    ct);
+            }
+            else
+            {
+                affected = await query.ExecuteUpdateAsync(setters =>
+                    setters.SetProperty(x => x.UsedCount, x => x.UsedCount + 1),
+                    ct);
+            }
+
+            if (affected == 0)
+                return null;
+
+            return await _db.ShortLinks
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Code == code, ct);
+        }
     }
 }
