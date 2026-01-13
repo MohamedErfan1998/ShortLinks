@@ -20,6 +20,7 @@
     <ProjectReference Include="..\ShortLinks.AspNetCore\ShortLinks.AspNetCore.csproj" />
     <ProjectReference Include="..\ShortLinks.Core\ShortLinks.Core.csproj" />
     <ProjectReference Include="..\ShortLinks.Storage.EFCore\ShortLinks.Storage.EFCore.csproj" />
+    <ProjectReference Include="..\ShortLinks.Storage.Redis\ShortLinks.Storage.Redis.csproj" />
   </ItemGroup>
 
 </Project>
