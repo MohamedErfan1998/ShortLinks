@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <!-- NuGet (optional - if you publish) -->
+	  <IsPackable>true</IsPackable>
+	  <PackageId>ShortLinks.Storage.Redis</PackageId>
+	  <Version>1.0.0</Version>
+	  <Authors>Mohamed Erfan</Authors>
+	  <Description>Redis storage provider for ShortLinks (StackExchange.Redis).</Description>
+	  <PackageTags>shortlinks redis url shortener</PackageTags>
+	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <RepositoryUrl>https://github.com/MohamedErfan1998/ShortLinks</RepositoryUrl>
+
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\icon.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+	  <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ShortLinks.Abstractions\ShortLinks.Abstractions.csproj" />
+	</ItemGroup>
+</Project>
