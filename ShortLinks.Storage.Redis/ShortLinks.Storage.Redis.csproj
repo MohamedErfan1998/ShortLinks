@@ -8,7 +8,7 @@
 	  <!-- NuGet (optional - if you publish) -->
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Storage.Redis</PackageId>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <Authors>Mohamed Erfan</Authors>
 	  <Description>Redis storage provider for ShortLinks (StackExchange.Redis).</Description>
 	  <PackageTags>shortlinks redis url shortener</PackageTags>

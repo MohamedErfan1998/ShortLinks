@@ -17,6 +17,53 @@ namespace ShortLinks.Storage.Redis.Repositories
             WriteIndented = false
         };
 
+        // Atomic consume:
+        // - GET key
+        // - check MaxUses/UsedCount
+        // - increment UsedCount
+        // - optionally increment HitCount and set LastAccessedAtUtc
+        // - SET value back preserving TTL
+        // - return updated JSON
+        private const string ConsumeLua = @"
+            local key = KEYS[1]
+            local track = ARGV[1] == '1'
+            local nowIso = ARGV[2]
+
+            local v = redis.call('GET', key)
+            if not v then return nil end
+
+            -- preserve TTL
+            local ttl = redis.call('PTTL', key)
+
+            local obj = cjson.decode(v)
+
+            -- usedCount/maxUses (camelCase)
+            local used = tonumber(obj.usedCount or 0)
+
+            if obj.maxUses ~= cjson.null and obj.maxUses ~= nil then
+              local maxUses = tonumber(obj.maxUses)
+              if used >= maxUses then
+                return nil
+              end
+            end
+
+            obj.usedCount = used + 1
+
+            if track then
+              obj.hitCount = tonumber(obj.hitCount or 0) + 1
+              obj.lastAccessedAtUtc = nowIso
+            end
+
+            local out = cjson.encode(obj)
+
+            if ttl ~= nil and ttl > 0 then
+              redis.call('SET', key, out, 'PX', ttl)
+            else
+              redis.call('SET', key, out)
+            end
+
+            return out
+            ";
         public RedisShortLinkRepository(IConnectionMultiplexer mux, RedisShortLinksOptions options)
         {
             _db = mux.GetDatabase();
@@ -116,6 +163,29 @@ namespace ShortLinks.Storage.Redis.Repositories
 
             return JsonSerializer.Deserialize<ShortLink>((byte[])value!, JsonOptions)
                    ?? throw new InvalidOperationException("Failed to deserialize ShortLink.");
+        }
+
+        public async Task<ShortLink?> ConsumeAsync(string code, bool trackHits, CancellationToken ct = default)
+        {
+            var key = Key(code);
+
+            // ISO UTC for LastAccessedAtUtc (no parsing needed in Lua)
+            var nowIso = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+
+            var result = await _db.ScriptEvaluateAsync(
+                ConsumeLua,
+                new RedisKey[] { key },
+                new RedisValue[] { trackHits ? 1 : 0, nowIso }
+            );
+
+            if (result.IsNull)
+                return null;
+
+            var json = (string)result!;
+            var updated = JsonSerializer.Deserialize<ShortLink>(json, JsonOptions);
+
+            // If deserialization fails, treat as not found
+            return updated;
         }
     }
 }
