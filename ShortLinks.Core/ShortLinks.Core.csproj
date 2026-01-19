@@ -7,7 +7,7 @@
 
 	  <IsPackable>true</IsPackable>
 	  <PackageId>ShortLinks.Core</PackageId>
-	  <Version>1.0.4</Version>
+	  <Version>1.0.5</Version>
 	  <Authors>Mohamed Erfan</Authors>
 	  <Description>ShortLinks core services (create/resolve + code generator).</Description>
 	  <PackageTags>shortlinks url shortener</PackageTags>
