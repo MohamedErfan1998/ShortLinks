@@ -7,7 +7,7 @@ ShortLinks helps you create, resolve, and manage short URLs with support for
 
 > 🚀 **New to ShortLinks?**  
 > Start here: [docs/README.md](docs/README.md)  
-> Prefer PDF? [Download User Manual](https://github.com/MohamedErfan1998/ShortLinks/blob/main/docs/ShortLinks.UserManual.pdf)
+> Prefer PDF? [Download User Manual](https://github.com/MohamedErfan1998/ShortLinks/blob/dev/docs/ShortLinks.UserManual.pdf)
 
 ---
 
