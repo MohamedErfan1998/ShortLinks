@@ -13,5 +13,8 @@
 
         public int HitCount { get; set; }
         public DateTime? LastAccessedAtUtc { get; set; }
+
+        public int? MaxUses { get; set; }     // null = unlimited
+        public int UsedCount { get; set; }    // increments on resolve
     }
 }

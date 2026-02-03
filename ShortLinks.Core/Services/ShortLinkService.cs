@@ -29,6 +29,11 @@ namespace ShortLinks.Core.Services
             if (request.ExpireAtUtc is not null && request.ExpireAtUtc <= DateTime.UtcNow)
                 throw new ArgumentException("ExpireAtUtc must be in the future.", nameof(request.ExpireAtUtc));
 
+            var maxUses = request.OneTime ? 1 : request.MaxUses;
+
+            if (maxUses is not null && maxUses <= 0)
+                throw new ArgumentException("MaxUses must be greater than zero.", nameof(request.MaxUses));
+
             if (!string.IsNullOrWhiteSpace(request.CustomCode))
                 UrlValidator.EnsureValidCode(request.CustomCode);
 
@@ -51,7 +56,9 @@ namespace ShortLinks.Core.Services
                 Code = code,
                 OriginalUrl = request.OriginalUrl,
                 ExpireAtUtc = request.ExpireAtUtc,
-                CreatedAtUtc = DateTime.UtcNow
+                CreatedAtUtc = DateTime.UtcNow,
+                MaxUses = maxUses,
+                UsedCount = 0
             };
 
             await _repo.SaveAsync(link, ct);
@@ -64,19 +71,9 @@ namespace ShortLinks.Core.Services
         {
             UrlValidator.EnsureValidCode(code);
 
-            var link = await _repo.FindByCodeAsync(code, ct);
+            var link = await _repo.ConsumeAsync(code, _options.TrackHits, ct);
             if (link is null)
                 return null;
-
-            if (link.ExpireAtUtc is not null && link.ExpireAtUtc <= DateTime.UtcNow)
-                return null;
-
-            if (_options.TrackHits)
-            {
-                link.HitCount++;
-                link.LastAccessedAtUtc = DateTime.UtcNow;
-                await _repo.UpdateTrackingAsync(link, ct);
-            }
 
             return new ResolveShortLinkResult(link.Code, link.OriginalUrl);
         }
